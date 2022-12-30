@@ -7,7 +7,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.generics import GenericAPIView, mixins, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import (IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly)
 
 # my imports
 from .models import Student, Path
@@ -267,8 +267,9 @@ class StudentMVS(ModelViewSet):
     
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
-    # permission_classes= [IsAdminUser]
-    permission_classes= [IsAuthenticated]
+    permission_classes= [IsAdminUser]
+    # permission_classes= [IsAuthenticated]
+    # permission_classes= [IsAuthenticatedOrReadOnly]
     pagination_class=CustomPageNumberPagination
     # pagination_class=CustomLimitOffsetPagination
     # pagination_class=CustomCursorPagination

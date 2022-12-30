@@ -237,6 +237,7 @@ class StudentCV(ListCreateAPIView):
     
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
+   
     
 class StudentDetailCV(RetrieveUpdateDestroyAPIView):
     
@@ -260,11 +261,14 @@ class StudentDetailCV(RetrieveUpdateDestroyAPIView):
 from .pagination import *
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter,OrderingFilter
+from rest_framework.authentication import (IsAuthenticated, IsAdminUser)
 
 class StudentMVS(ModelViewSet):
     
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
+    # permission_classes= [IsAdminUser]
+    permission_classes= [IsAuthenticated]
     pagination_class=CustomPageNumberPagination
     # pagination_class=CustomLimitOffsetPagination
     # pagination_class=CustomCursorPagination

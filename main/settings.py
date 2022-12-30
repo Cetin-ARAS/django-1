@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     # my_apps
     'student_api',
+    'user',
    
 ]
 
